@@ -14,7 +14,7 @@ from .db_setup import db
 
 class QueryView(APIView):
     """
-    View to handle queries using RetrievalQA.
+    View to handle queries. Returns true if the product is already in the database and false if no such product is available
     """
     permission_classes = [permissions.AllowAny]
    
@@ -23,7 +23,7 @@ class QueryView(APIView):
         
          # Define the QA template
         template = """Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer. Don't answer any question outside of pieces of context, say it's out of context.
-        Do we have this {question} in the product list? If no, say False, If yes say True.
+        Do we have exactly this {question} in the product list? If no, say False, If yes say True.
         {context}
         Question: {question}
         Helpful Answer:
